@@ -1,0 +1,6 @@
+2026-10-12 14:10:01 INFO  [self-check] last run returned status NO_ERROR
+2026-10-12 14:10:02 INFO  [self-check] 0 ERRORS and 2 warnings within the last hour
+2026-10-12 14:10:03 WARN  [self-check] error while reading the cache, using defaults
+2026-10-12 14:10:04 INFO  [self-check] ErrorHandler registered for 4 components
+2026-10-12 14:10:05 INFO  [self-check] counters: errors=0 warnings=2
+2026-10-12 14:10:06 ERROR [self-check] disk usage at 97 %, archiving is blocked

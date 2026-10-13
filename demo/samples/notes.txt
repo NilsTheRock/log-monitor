@@ -1,0 +1,4 @@
+Handover notes - this is not a log file, so log-monitor ignores it.
+
+The ERROR in app.log at 14:03:10 came from a failover of the database cluster.
+Nothing to do, the connection was restored automatically five seconds later.

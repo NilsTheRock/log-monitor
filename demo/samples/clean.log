@@ -1,0 +1,5 @@
+2026-10-12 14:12:00 INFO  [mail-dispatch] queue is empty
+2026-10-12 14:12:30 INFO  [mail-dispatch] 42 mails delivered in the last 30 s
+2026-10-12 14:13:00 WARN  [mail-dispatch] relay answered slowly (1204 ms)
+2026-10-12 14:13:30 INFO  [mail-dispatch] 17 mails delivered in the last 30 s
+2026-10-12 14:14:00 INFO  [mail-dispatch] nightly cleanup removed 3 temporary files

@@ -1,0 +1,12 @@
+2026-10-12 14:02:58 INFO  [payment-gateway] service started, version 2.4.1
+2026-10-12 14:02:59 INFO  [payment-gateway] listening on port 8080
+2026-10-12 14:03:04 INFO  [invoice-export] exporting 128 invoices for billing period 2026-09
+2026-10-12 14:03:07 WARN  [invoice-export] export took 2841 ms, above the 2000 ms threshold
+2026-10-12 14:03:10 ERROR [payment-gateway] database connection lost
+2026-10-12 14:03:10 INFO  [payment-gateway] retrying in 5 s
+2026-10-12 14:03:15 INFO  [payment-gateway] database connection restored
+2026-10-12 14:04:22 WARN  [citizen-portal] session cache at 91 % capacity
+2026-10-12 14:05:01 ERROR [citizen-portal] cannot render form A1-2026, template not found
+2026-10-12 14:05:02 INFO  [citizen-portal] fallback template used
+2026-10-12 14:07:44 ERROR [invoice-export] upload to the archive failed after 3 attempts
+2026-10-12 14:07:45 INFO  [invoice-export] job 4711 finished, 1 of 128 invoices not archived
