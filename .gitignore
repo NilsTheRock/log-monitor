@@ -37,3 +37,13 @@ build/
 
 ### Mac OS ###
 .DS_Store
+### IntelliJ IDEA project files ###
+.idea/
+*.iml
+
+### log-monitor runtime output ###
+alerts.log
+.log-monitor-state.properties
+demo/watch/
+demo/alerts.log
+demo/state.properties
