@@ -2,16 +2,16 @@
 
 [![build](https://github.com/NilsTheRock/log-monitor/actions/workflows/build.yml/badge.svg)](https://github.com/NilsTheRock/log-monitor/actions/workflows/build.yml)
 
-Überwacht einen Ordner mit Log-Dateien und meldet jede neu hinzugekommene Zeile, die „ERROR"
+Überwacht einen Ordner mit Log-Dateien und meldet jede neu hinzugekommene Zeile, die „ERROR“
 enthält – auf der Konsole und in einer Alert-Datei.
 
 ## Aufgabe
 
 Externe Komponenten legen ihre Log-Dateien in einem Ordner ab. Taucht in einer dieser Dateien das
-Wort „ERROR" auf, soll eine Benachrichtigung ausgelöst werden. Umzusetzen sind drei Schritte:
+Wort „ERROR“ auf, soll eine Benachrichtigung ausgelöst werden. Umzusetzen sind drei Schritte:
 
 1. einen vorgegebenen Ordner überwachen oder einmalig nach Log-Dateien durchsuchen,
-2. die gefundenen Log-Dateien nach „ERROR" durchsuchen,
+2. die gefundenen Log-Dateien nach „ERROR“ durchsuchen,
 3. bei Fundstellen eine Benachrichtigung auslösen (Art der Benachrichtigung frei wählbar).
 
 Umgesetzt ist die Variante **überwachen**: Der Prozess läuft dauerhaft und meldet eine Fundstelle,
@@ -23,7 +23,7 @@ für `grep -rlw ERROR`.
 - Log-Dateien sind UTF-8-Textdateien, zeilenbasiert und werden nur **angehängt**, nicht
   nachträglich verändert.
 - Überwacht wird **nur der konfigurierte Ordner**, keine Unterordner.
-- „ERROR" wird **case-sensitive und mit Wortgrenzen** gesucht (`\bERROR\b`). `NO_ERROR`, `ERRORS`,
+- „ERROR“ wird **case-sensitive und mit Wortgrenzen** gesucht (`\bERROR\b`). `NO_ERROR`, `ERRORS`,
   `error` und `ErrorHandler` sind damit keine Fundstellen.
 - Jede Fundstelle wird **genau einmal** gemeldet, auch über Neustarts hinweg. Ausnahme ist eine
   fehlgeschlagene Benachrichtigung, siehe [Fehlerfall](#fehlerfall-at-least-once).
@@ -42,16 +42,16 @@ Die Quellen der Diagramme (`.drawio`) und SVG-Exporte liegen ebenfalls in
 `docs/diagrams/`. Die Komponente `Matcher` aus dem Diagramm heißt im Code `LineMatcher`,
 um eine Namenskollision mit `java.util.regex.Matcher` zu vermeiden.
 
-| Komponente | Verantwortung |
-|---|---|
-| `LogMonitorApplication` | Einstiegspunkt: Konfiguration laden, Komponenten verdrahten, Watcher starten, Shutdown-Hook |
-| `Config` | Alle Einstellungen; Defaults, Properties-Datei, CLI-Overrides, Validierung |
-| `DirectoryWatcher` | `WatchService` und Timer; gibt Scan-Aufträge an den Executor |
-| `LogScanner` | Scannt eine Datei ab dem gespeicherten Offset und meldet Treffer |
-| `LineMatcher` | Kapselt das kompilierte Regex-Pattern |
-| `StateStore` | Scan-Fortschritt pro Datei laden und persistieren |
-| `FileState`, `Finding` | Datensätze für Fortschritt bzw. Fundstelle |
-| `Notifier` | Schnittstelle für Benachrichtigungen (`ConsoleNotifier`, `FileNotifier`, `CompositeNotifier`) |
+| Komponente              | Verantwortung                                                                                 |
+|-------------------------|-----------------------------------------------------------------------------------------------|
+| `LogMonitorApplication` | Einstiegspunkt: Konfiguration laden, Komponenten verdrahten, Watcher starten, Shutdown-Hook   |
+| `Config`                | Alle Einstellungen; Defaults, Properties-Datei, CLI-Overrides, Validierung                    |
+| `DirectoryWatcher`      | `WatchService` und Timer; gibt Scan-Aufträge an den Executor                                  |
+| `LogScanner`            | Scannt eine Datei ab dem gespeicherten Offset und meldet Treffer                              |
+| `LineMatcher`           | Kapselt das kompilierte Regex-Pattern                                                         |
+| `StateStore`            | Scan-Fortschritt pro Datei laden und persistieren                                             |
+| `FileState`, `Finding`  | Datensätze für Fortschritt bzw. Fundstelle                                                    |
+| `Notifier`              | Schnittstelle für Benachrichtigungen (`ConsoleNotifier`, `FileNotifier`, `CompositeNotifier`) |
 
 ## Designentscheidungen
 
@@ -138,8 +138,7 @@ Properties-Datei, einzelne Werte per CLI-Argument überschreibbar; Reihenfolge
 **Defaults → Properties-Datei → CLI**. Damit lässt sich eine feste Betriebskonfiguration ablegen
 und für einen Testlauf punktuell abweichen, ohne die Datei zu bearbeiten. Die Konfiguration wird
 beim Start validiert (Ordner vorhanden, Regex kompilierbar, Intervall > 0) und bricht im Fehlerfall
-mit klarer Meldung und Exit-Code 1 ab – lieber sofort als nach Stunden stillen
-Nicht-Überwachens.
+mit klarer Meldung und Exit-Code 1 ab.
 
 ### Fehlerfall: at-least-once
 
@@ -171,14 +170,14 @@ Beendet wird mit `Ctrl+C`; der Shutdown-Hook wartet auf einen noch laufenden Sca
 
 ## Konfiguration
 
-| Key | Default | Bedeutung |
-|---|---|---|
-| `watch.directory` | – (Pflicht) | Zu überwachender Ordner, ohne Unterordner |
-| `file.pattern` | `*.log` | Glob auf den Dateinamen |
-| `match.pattern` | `\bERROR\b` | Regex, case-sensitive |
-| `scan.interval.seconds` | `60` | Intervall des periodischen Komplett-Scans |
-| `alert.file` | `alerts.log` | Ziel des `FileNotifier` |
-| `state.file` | `.log-monitor-state.properties` | Datei mit dem Scan-Fortschritt |
+| Key                     | Default                         | Bedeutung                                 |
+|-------------------------|---------------------------------|-------------------------------------------|
+| `watch.directory`       | – (Pflicht)                     | Zu überwachender Ordner, ohne Unterordner |
+| `file.pattern`          | `*.log`                         | Glob auf den Dateinamen                   |
+| `match.pattern`         | `\bERROR\b`                     | Regex, case-sensitive                     |
+| `scan.interval.seconds` | `60`                            | Intervall des periodischen Komplett-Scans |
+| `alert.file`            | `alerts.log`                    | Ziel des `FileNotifier`                   |
+| `state.file`            | `.log-monitor-state.properties` | Datei mit dem Scan-Fortschritt            |
 
 Jeder Key ist auch als CLI-Argument nutzbar (`--scan.interval.seconds=10`) und überschreibt dann
 die Properties-Datei. Relative Pfade gelten relativ zum Arbeitsverzeichnis. Unbekannte Keys werden
@@ -218,14 +217,14 @@ Danach `Ctrl+C` und Schritt 3 erneut: es wird **keine** Fundstelle wiederholt, w
 
 JUnit 5, jeder Test in einem eigenen temporären Ordner (`@TempDir`); als Test-Double dient ein
 `RecordingNotifier`, der Fundstellen sammelt und auf Wunsch fehlschlägt. Abgedeckt sind das
-Matching inklusive der Edge Cases, „nur neue Zeilen", die unvollständige letzte Zeile, Rotation,
+Matching inklusive der Edge Cases, „nur neue Zeilen“, die unvollständige letzte Zeile, Rotation,
 Neustart ohne Doppelmeldung, leere und gelöschte Dateien, die fehlgeschlagene Benachrichtigung,
 CRLF-Zeilenenden, der `CompositeNotifier` sowie das Laden und Validieren der Konfiguration.
 
 Der `DirectoryWatcher` wird **nicht** automatisiert getestet: das Timing des `WatchService` ist
 plattformabhängig (unter Windows und Linux unterscheiden sich Anzahl und Latenz der Events), ein
-Test dafür bräuchte Wartezeiten und würde flaky. Geprüft wird er über die Demo. Die Logik, die
-dabei nicht abgedeckt ist, ist bewusst klein: der Watcher entscheidet nur, *wann* gescannt wird,
+Test dafür bräuchte Wartezeiten. Geprüft wird er über die Demo. Die Logik, die
+dabei nicht abgedeckt ist, ist bewusst klein: Der Watcher entscheidet nur, *wann* gescannt wird,
 das *Was* liegt vollständig im getesteten `LogScanner`.
 
 ## Ausblick
@@ -239,5 +238,5 @@ Für einen echten Betrieb fehlen vor allem:
 - robustere Rotationserkennung über die Datei-Identität (`fileKey`/Inode) – aktuell wird Rotation
   nur erkannt, wenn die neue Datei beim nächsten Scan noch kleiner ist als der alte Offset,
 - Log-Rotation mit Kompression und andere Encodings als UTF-8,
-- die Option „beim Erststart am Dateiende beginnen",
+- die Option „beim Erststart am Dateiende beginnen“,
 - Betrieb als Dienst (systemd, Windows-Dienst, Docker) samt eigenem Health-Check des Watchers.
