@@ -1,4 +1,4 @@
-package io.github.nils897.logmonitor;
+package io.github.nilstherock.logmonitor;
 
 /**
  * Thrown when a {@link Notifier} could not deliver a finding. Deliberately independent of the

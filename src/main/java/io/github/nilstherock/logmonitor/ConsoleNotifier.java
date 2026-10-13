@@ -1,4 +1,4 @@
-package io.github.nils897.logmonitor;
+package io.github.nilstherock.logmonitor;
 
 /** Writes findings to standard output. */
 public final class ConsoleNotifier implements Notifier {

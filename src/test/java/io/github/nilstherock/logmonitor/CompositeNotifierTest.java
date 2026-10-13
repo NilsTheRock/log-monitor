@@ -1,4 +1,4 @@
-package io.github.nils897.logmonitor;
+package io.github.nilstherock.logmonitor;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package io.github.nils897.logmonitor;
+package io.github.nilstherock.logmonitor;
 
 /**
  * Reports findings to the outside world. Implementations decide where a finding goes - console,

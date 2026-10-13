@@ -1,4 +1,4 @@
-package io.github.nils897.logmonitor;
+package io.github.nilstherock.logmonitor;
 
 import java.util.ArrayList;
 import java.util.List;

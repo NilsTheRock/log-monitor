@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.nils897</groupId>
+    <groupId>io.github.nilstherock</groupId>
     <artifactId>log-monitor</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -38,7 +38,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>io.github.nils897.logmonitor.LogMonitorApplication</mainClass>
+                            <mainClass>io.github.nilstherock.logmonitor.LogMonitorApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
