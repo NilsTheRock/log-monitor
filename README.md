@@ -1,6 +1,6 @@
 # log-monitor
 
-[![build](https://github.com/Nils897/log-monitor/actions/workflows/build.yml/badge.svg)](https://github.com/Nils897/log-monitor/actions/workflows/build.yml)
+[![build](https://github.com/NilsTheRock/log-monitor/actions/workflows/build.yml/badge.svg)](https://github.com/NilsTheRock/log-monitor/actions/workflows/build.yml)
 
 Überwacht einen Ordner mit Log-Dateien und meldet jede neu hinzugekommene Zeile, die „ERROR"
 enthält – auf der Konsole und in einer Alert-Datei.
@@ -34,9 +34,13 @@ für `grep -rlw ERROR`.
 
 ## Lösungsentwurf
 
-![Aktivitätsdiagramm](docs/diagrams/aktivitaetsdiagramm.png)
+![Aktivitätsdiagramm](docs/diagrams/Aktivitätsdiagramm.png)
 
-![Komponentendiagramm](docs/diagrams/komponentendiagramm.png)
+![Komponentendiagramm](docs/diagrams/Komponentendiagramm.png)
+
+Die Quellen der Diagramme (`.drawio`) und SVG-Exporte liegen ebenfalls in
+`docs/diagrams/`. Die Komponente `Matcher` aus dem Diagramm heißt im Code `LineMatcher`,
+um eine Namenskollision mit `java.util.regex.Matcher` zu vermeiden.
 
 | Komponente | Verantwortung |
 |---|---|

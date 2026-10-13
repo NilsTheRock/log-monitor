@@ -1,0 +1,86 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Komponentendiagramm" id="Komponentendiagramm">
+    <mxGraphModel dx="2013" dy="1111" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1220" pageHeight="670" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;width=200;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=6;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;cmp&lt;/b&gt; Log-Monitoring" vertex="1">
+          <mxGeometry height="620" width="1180" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="watcher" parent="1" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;DirectoryWatcher&lt;/b&gt;&lt;br&gt;&lt;i&gt;Events + Timer&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="50" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="scanner" parent="1" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;LogScanner&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="240" x="380" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="config" parent="1" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Config&lt;/b&gt;&lt;br&gt;&lt;i&gt;Einstellungen für alle&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="50" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="matcher" parent="1" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Matcher&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="350" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="state" parent="1" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;StateStore&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="530" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="notifier" parent="1" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#f3faf1;rounded=0;" value="«interface» &lt;b&gt;Notifier&lt;/b&gt;" vertex="1">
+          <mxGeometry height="235" width="420" x="760" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="consoleN" parent="notifier" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;ConsoleNotifier&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="180" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fileN" parent="notifier" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;FileNotifier&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="180" x="220" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="compN" parent="notifier" style="shape=component;align=center;spacingLeft=30;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;CompositeNotifier&lt;/b&gt;&lt;br&gt;&lt;i&gt;leitet an alle weiter&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="200" x="100" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="fs" parent="1" style="rounded=0;html=1;whiteSpace=wrap;dashed=1;fillColor=none;strokeColor=#999999;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontStyle=1;fontColor=#666666;" value="Dateisystem" vertex="1">
+          <mxGeometry height="150" width="1140" x="40" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="cfgFile" parent="1" style="shape=note;size=14;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="Konfigurations-&lt;br&gt;datei" vertex="1">
+          <mxGeometry height="60" width="140" x="50" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="logDir" parent="1" style="shape=folder;tabWidth=50;tabHeight=14;tabPosition=left;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=middle;spacingTop=10;" value="Log-Ordner&lt;br&gt;(*.log)" vertex="1">
+          <mxGeometry height="60" width="150" x="210" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="stateFile" parent="1" style="shape=note;size=14;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="State-Datei" vertex="1">
+          <mxGeometry height="60" width="150" x="530" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="alertFile" parent="1" style="shape=note;size=14;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="Alert-Datei" vertex="1">
+          <mxGeometry height="60" width="170" x="1010" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="u1" edge="1" parent="1" source="watcher" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=1.0;exitY=0.3333;exitDx=0;exitDy=0;entryX=0.0;entryY=0.3333;entryDx=0;entryDy=0;" target="scanner" value="löst Scan aus">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u2" edge="1" parent="1" source="scanner" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.2553;entryDx=0;entryDy=0;" target="notifier" value="meldet Fundstelle">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u3" edge="1" parent="1" source="scanner" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=0.1875;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" target="matcher" value="prüft Zeile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u4" edge="1" parent="1" source="scanner" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=0.9375;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" target="state" value="Offsets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u5" edge="1" parent="1" source="config" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5357;entryY=0.0;entryDx=0;entryDy=0;" target="cfgFile" value="liest">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u6" edge="1" parent="1" source="watcher" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=0.9211;exitY=1.0;exitDx=0;exitDy=0;entryX=0.1;entryY=0.0;entryDx=0;entryDy=0;" target="logDir" value="überwacht">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u7" edge="1" parent="1" source="scanner" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=0.6;entryY=0.0;entryDx=0;entryDy=0;" target="logDir" value="liest ab Offset">
+          <mxGeometry relative="1" x="0.0087" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="152" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="u8" edge="1" parent="1" source="state" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" target="stateFile" value="persistiert">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u9" edge="1" parent="1" source="fileN" style="html=1;rounded=0;endArrow=open;endSize=10;labelBackgroundColor=#ffffff;fontSize=11;edgeStyle=none;exitX=0.6667;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5294;entryY=0.0;entryDx=0;entryDy=0;" target="alertFile" value="hängt an">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
