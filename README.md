@@ -129,6 +129,10 @@ identischen Text:
 [2026-10-12 14:03:11] Match in app.log (line 42): 2026-10-12 14:03:10 ERROR [payment-gateway] database connection lost
 ```
 
+Auf einem Terminal färbt der `ConsoleNotifier` den Kopf der Meldung (bis einschließlich
+`(line 42):`) grün, die Log-Zeile selbst bleibt ungefärbt. Wird die Ausgabe umgeleitet oder ist
+`NO_COLOR` gesetzt, entfällt die Farbe.
+
 Der `CompositeNotifier` verteilt an mehrere Kanäle. Ein Mail- oder Teams-Notifier wäre eine neue
 Implementierung des Interfaces, ohne Änderung an Scanner oder State.
 

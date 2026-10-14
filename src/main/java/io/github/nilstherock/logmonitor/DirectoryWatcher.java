@@ -61,14 +61,15 @@ public final class DirectoryWatcher implements AutoCloseable {
      * @throws IOException if the directory cannot be registered for file system events
      */
     public void run() throws IOException {
-        submit(scanner::scanAll);
-        scans.scheduleWithFixedDelay(scanner::scanAll,
-                scanIntervalSeconds, scanIntervalSeconds, TimeUnit.SECONDS);
+        // Register before the initial scan, so no change between scan and registration goes unnoticed
         directory.register(watchService,
                 StandardWatchEventKinds.ENTRY_CREATE,
                 StandardWatchEventKinds.ENTRY_MODIFY,
                 StandardWatchEventKinds.ENTRY_DELETE);
         LOG.info("Watching " + directory + ", full scan every " + scanIntervalSeconds + "s");
+        submit(scanner::scanAll);
+        scans.scheduleWithFixedDelay(scanner::scanAll,
+                scanIntervalSeconds, scanIntervalSeconds, TimeUnit.SECONDS);
         try {
             watch();
         } catch (ClosedWatchServiceException e) {

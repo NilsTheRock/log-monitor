@@ -25,7 +25,16 @@ public record Finding(Path file, long lineNumber, String line, Instant detectedA
      * @return for example {@code [2026-10-12 14:03:11] Match in app.log (line 42): ... ERROR ...}
      */
     public String format() {
-        return "[%s] Match in %s (line %d): %s"
-                .formatted(TIMESTAMP.format(detectedAt), file.getFileName(), lineNumber, line);
+        return header() + " " + line;
+    }
+
+    /**
+     * Formats the part of {@link #format()} that precedes the matching line.
+     *
+     * @return for example {@code [2026-10-12 14:03:11] Match in app.log (line 42):}
+     */
+    public String header() {
+        return "[%s] Match in %s (line %d):"
+                .formatted(TIMESTAMP.format(detectedAt), file.getFileName(), lineNumber);
     }
 }
